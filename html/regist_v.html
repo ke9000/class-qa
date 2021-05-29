@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+	<title>基礎プログラミング演習 質問システム : 質問投稿</title>
+</head>
+<body>
+	<h1>基礎プログラミング演習 質問システム</h1>
+	<hr>
+	<h2>質問内容を確認してください</h2>
+	<br>
+	<table border="1">
+		<tr>
+			<td>投稿者</td>
+			<td>テスト太郎</td>
+		</tr>
+		<tr>
+			<td>件名</td>
+			<td>パソコンが壊れました</td>
+		</tr>
+		<tr>
+			<td>メールアドレス</td>
+			<td>mail@example.com</td>
+		</tr>
+		<tr>
+			<td>質問</td>
+			<td>aaaaaaaaaaaaaa<br>aaaaaa</td>
+		</tr>
+		<tr>
+			<td>コード(html)</td>
+			<td>
+				<pre>
+					<code>
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;テスト&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h1&gt;Hello, World&lt;/h1&gt;
+	&lt;body&gt;
+&lt;/html&gt;
+					</code>
+				</pre>
+			</td>
+		</tr>
+		<tr>
+			<td>コード(html)</td>
+			<td>
+				<pre>
+					<code>
+function call_a(){
+	alert('hello, world');
+}
+					</code>
+				</pre>
+			</td>
+		</tr>
+	</table>
+
+	<div  style="display:inline-flex;">
+		<form method="POST" name="q_regist" class="div-regist-btn" action="regist.php?v=true">
+			<input type="text" name="q_name" class="display-none" placeholder="テスト太郎" >
+			<input type="text" name="q_title" class="display-none" placeholder="パソコンが壊れました">
+			<input type="text" name="q_mail" class="display-none" placeholder="sample@example.com">
+			<textarea name="q_content" class="display-none" cols="100" rows="10"></textarea>
+			<textarea name="q_code1" class="display-none" cols="100" rows="10"></textarea>
+			<textarea name="q_code2" class="display-none" cols="100" rows="10"></textarea>
+			<a href="#" onclick="document.q_regist.submit();" class="btn btn-blue">質問する</a>
+		</form>
+		
+		<form method="POST" name="q_regist" class="div-regist-btn" action="regist.php?v=true">
+			<input type="text" name="q_name" class="display-none" placeholder="テスト太郎" >
+			<input type="text" name="q_title" class="display-none" placeholder="パソコンが壊れました">
+			<input type="text" name="q_mail" class="display-none" placeholder="sample@example.com">
+			<textarea name="q_content" class="display-none" cols="100" rows="10"></textarea>
+			<textarea name="q_code1" class="display-none" cols="100" rows="10"></textarea>
+			<textarea name="q_code2" class="display-none" cols="100" rows="10"></textarea>
+			<a href="#" onclick="document.q_regist.submit();" class="btn btn-black">回答を修正する</a>
+		</form>
+	</div>
+</body>
+</html>
