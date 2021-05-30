@@ -41,10 +41,15 @@ table {
 	max-width: 1000px;
 }
 
-th {
+table.index th {
 	background-color: rgb(24, 150, 235);
 	color: #ffffff;
 	text-align: center;
+}
+
+table.detail th {
+	background-color: rgb(24, 150, 235);
+	color: #ffffff;
 }
 
 td {
@@ -52,7 +57,7 @@ td {
 	padding-bottom: 10px;
 }
 
-.no {
+.q-no {
 	text-align: center;
 	width: 30px;
 }
@@ -61,14 +66,24 @@ td.q-title {
 	padding-left: 10px;
 }
 
-.state {
+.q-state {
 	text-align: center;
 	width: 80px;
 }
 
-.detail {
+.q-detail-link {
 	text-align: center;
 	width: 50px;
+}
+
+
+th.q-detail {
+	padding-left: 10px;
+	text-align: left;
+}
+
+td.q-detail {
+	padding-left: 10px ;
 }
 
 /**
@@ -122,4 +137,9 @@ textarea:focus {
 
 form.div-regist-btn {
 	margin: 10px 10px;
+}
+
+code, pre {
+	margin: 0 auto;
+	padding: 0 auto;
 }
