@@ -10,12 +10,15 @@
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
+	<a href="index.html" class="btn btn-blue">←前の画面に戻る</a>
+	<br>
 	<form method="POST" name="q_regist" action="regist_c.php">
 		<h3>投稿者</h3>
 		<input type="text" name="q_name" id="" placeholder="テスト太郎" value="">
 		<h3>質問タイトル</h3>
-		<input type="text" name="q_title" id="" placeholder="パソコンが壊れました" value="">
+		<input type="text" name="q_title" id="" placeholder="第N回 課題Mでエラーが表示されます" value="">
 		<h3>メールアドレス</h3>
+		<p class="form-commnet">この欄は教員とSAのみに表示されます</p>
 		<input type="text" name="q_mail" id="" placeholder="sample@example.com" value="">
 		<h3>質問</h3>
 		<p class="form-commnet">なるだけ詳細に書いてください。</p>
@@ -28,7 +31,7 @@
 		<p class="form-commnet">javascriptのソースコードをコピペで貼り付けてください</p>
 		<textarea name="q_code2" id="" cols="100" rows="10"></textarea>
 		<br>
-		<a href="#" onclick="document.q_regist.submit();" class="btn btn-blue">質問する</a>
+		<a href="regist_c.html" onclick="document.q_regist.submit();" class="btn btn-blue">質問する</a>
 	</form>
 </body>
 </html>

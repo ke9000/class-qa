@@ -10,7 +10,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 	
-	<title>基礎プログラミング演習 質問システム : 質問投稿</title>
+	<title>基礎プログラミング演習 質問システム : 回答確認</title>
 </head>
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
@@ -123,7 +123,7 @@ function call_a(){
 			<textarea name="a_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code2" class="display-none" cols="100" rows="10"></textarea>
-			<a href="#" onclick="document.a_regist.submit();" class="btn btn-green">回答する</a>
+			<a href="index.html" onclick="document.a_regist.submit();" class="btn btn-green">回答する</a>
 		</form>
 		
 		<form method="POST" name="a_regist" class="div-regist-btn" action="regist.php?v=true">
@@ -131,7 +131,7 @@ function call_a(){
 			<textarea name="a_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code2" class="display-none" cols="100" rows="10"></textarea>
-			<a href="#" onclick="document.a_regist.submit();" class="btn btn-black">回答を修正する</a>
+			<a href="answer.html" onclick="document.a_regist.submit();" class="btn btn-black">回答を修正する</a>
 		</form>
 	</div>
 </body>
