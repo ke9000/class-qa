@@ -17,28 +17,27 @@
 	<hr>
 	<h2>質問内容を確認してください</h2>
 	<br>
-	<table border="1">
+	<table border="1" class="detail check">
 		<tr>
-			<td>投稿者</td>
+			<th>投稿者</th>
 			<td>テスト太郎</td>
 		</tr>
-		<tr>
-			<td>件名</td>
+		<t>
+			<th>件名</th>
 			<td>パソコンが壊れました</td>
 		</tr>
 		<tr>
-			<td>メールアドレス</td>
+			<th>メールアドレス</th>
 			<td>mail@example.com</td>
 		</tr>
 		<tr>
-			<td>質問</td>
+			<th>質問</th>
 			<td>aaaaaaaaaaaaaa<br>aaaaaa</td>
 		</tr>
 		<tr>
-			<td>コード(html)</td>
+			<th>コード(html)</th>
 			<td>
-				<pre>
-					<code>
+<pre><code>
 &lt;html&gt;
 	&lt;head&gt;
 		&lt;title&gt;テスト&lt;/title&gt;
@@ -47,25 +46,22 @@
 		&lt;h1&gt;Hello, World&lt;/h1&gt;
 	&lt;body&gt;
 &lt;/html&gt;
-					</code>
-				</pre>
+</code></pre>
 			</td>
 		</tr>
 		<tr>
-			<td>コード(html)</td>
+			<th>コード(html)</th>
 			<td>
-				<pre>
-					<code>
+<pre><code>
 function call_a(){
 	alert('hello, world');
 }
-					</code>
-				</pre>
+</code></pre>
 			</td>
 		</tr>
 	</table>
 
-	<div  style="display:inline-flex;">
+	<div class="regist-btn">
 		<form method="POST" name="q_regist" class="div-regist-btn" action="regist.php?v=true">
 			<input type="text" name="q_name" class="display-none" placeholder="テスト太郎" >
 			<input type="text" name="q_title" class="display-none" placeholder="パソコンが壊れました">

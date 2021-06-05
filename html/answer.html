@@ -10,14 +10,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 
-	<title>基礎プログラミング演習 質問システム : 詳細</title>
+	<title>基礎プログラミング演習 質問システム : 回答</title>
 </head>
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
-	<div class="detail-btns">
-		<a href="#" class="btn btn-blue btn-left">←前の画面に戻る</a>
-		<a href="#" class="btn btn-green btn-right">回答する</a>	
 	</div>
 	<br>
 	<table border="1" class="detail">
@@ -31,7 +28,7 @@
 			<td class="q-no">1</td>
 			<td class="">テスト太郎</td>
 			<td>2021-01-01 00:00:00</td>
-			<td class="q-state">回答済み</td>
+			<td class="q-state">未回答</td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">質問タイトル</th>
@@ -48,7 +45,8 @@
 		<tr>
 			<th colspan="2" class="q-detail">コード (html)</th>
 			<td colspan="2" class="q-detail">
-<pre><code>
+				<pre>
+					<code>
 &lt;html&gt;
 	&lt;head&gt;
 		&lt;title&gt;テスト&lt;/title&gt;
@@ -57,17 +55,20 @@
 		&lt;h1&gt;Hello, World&lt;/h1&gt;
 	&lt;body&gt;
 &lt;/html&gt;
-</code></pre>
+					</code>
+				</pre>
 			</td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">コード (javascript)</th>
 			<td colspan="2">
-<pre><code>
+				<pre>
+					<code>
 function call_a(){
 	alert('hello, world');
 }
-</code></pre>
+					</code>
+				</pre>
 			</td>
 		</tr>
 	</table>
@@ -76,46 +77,29 @@ function call_a(){
 	<hr>
 	<br>
 
-	<table border="1" class="answer">
-		<tr>
-			<th class="q-detail">回答日時</th>
-			<th class="q-detail">回答者</th>
-
-			
-		</tr>
-		<tr>
-			<td class="q-detail">2021-01-01 00:00:00</td>
-			<td class="q-detail">AKYM</td>
-		</tr>
-		<tr>
-			<th class="q-detail">回答</th>
-			<td class="q-detail">alertを<br>スペルミスしています</td>
-		</tr>
-		<tr>
-			<th class="q-detail">コード (html)</th>
-			<td class="q-detail">
-<pre><code>
-&lt;html&gt;
-	&lt;head&gt;
-		&lt;title&gt;テスト&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;h1&gt;Hello, World&lt;/h1&gt;
-	&lt;body&gt;
-&lt;/html&gt;
-</code></pre>
-			</td>
-		</tr>
-		<tr>
-			<th class="q-detail">コード (javascript)</th>
-			<td >
-<pre><code>
-function call_a(){
-	alert('hello, world');
-}
-</code></pre>
-			</td>
-		</tr>
-	</table>
+	<form method="POST" name="a_regist" action="answer_c.php">
+		<h3>回答者</h3>
+		<input type="text" name="a_name" id="" placeholder="先生次郎" value="">
+		<h3>回答</h3>
+		<textarea name="a_content" id="" cols="100" rows="10"></textarea>
+		<h3>コード (html) </h3>
+		<p class="form-commnet">htmlのソースコードをコピペで貼り付けてください</p>
+		<textarea name="a_code1" id="" cols="100" rows="10"></textarea>
+		<h3>コード (javascript) </h3>
+		<p class="form-commnet">javascriptのソースコードをコピペで貼り付けてください</p>
+		<textarea name="a_code2" id="" cols="100" rows="10"></textarea>
+		<br>
+		<h3>回答状態</h3>
+		<div class="select">
+			<select name="state" required>
+				<option value="2">回答済み</option>
+				<option value="0">未回答</option>
+				<option value="1">回答作成中</option>
+				<option value="3">回答スキップ</option>
+			</select>
+		</div>
+		<br>
+		<a href="#" onclick="document.a_regist.submit();" class="btn btn-green">回答する</a>
+	</form>
 </body>
 </html>
