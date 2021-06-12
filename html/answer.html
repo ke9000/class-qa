@@ -79,9 +79,9 @@ function call_a(){
 
 	<form method="POST" name="a_regist" action="answer_c.php">
 		<h3>回答者</h3>
-		<input type="text" name="a_name" id="" placeholder="先生次郎" value="">
+		<input type="text" name="a_name" id="" placeholder="先生次郎" required>
 		<h3>回答</h3>
-		<textarea name="a_content" id="" cols="100" rows="10"></textarea>
+		<textarea name="a_content" id="" cols="100" rows="10" required></textarea>
 		<h3>コード (html) </h3>
 		<p class="form-commnet">htmlのソースコードをコピペで貼り付けてください</p>
 		<textarea name="a_code1" id="" cols="100" rows="10"></textarea>
@@ -99,7 +99,7 @@ function call_a(){
 			</select>
 		</div>
 		<br>
-		<a href="answer_c.html" onclick="document.a_regist.submit();" class="btn btn-green">回答する</a>
+		<button type="submit" class="btn btn-green" name="a_regist" value="a_send_check">回答する</button>
 	</form>
 </body>
 </html>

@@ -118,20 +118,20 @@ function call_a(){
 	</table>
 
 	<div class="regist-btn">
-		<form method="POST" name="a_regist" class="div-regist-btn" action="regist.php?v=true">
-			<input type="text" name="a_name" class="display-none" placeholder="テスト太郎" >
+		<form method="POST" name="a_regist" class="div-regist-btn" action="index.html">
+			<input type="text" name="a_name" class="display-none" value="" >
 			<textarea name="a_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code2" class="display-none" cols="100" rows="10"></textarea>
-			<a href="index.html" onclick="document.a_regist.submit();" class="btn btn-green">回答する</a>
+			<button type="submit" class="btn btn-green" name="a_regist" value="a_send_submit">回答する</button>
 		</form>
 		
-		<form method="POST" name="a_regist" class="div-regist-btn" action="regist.php?v=true">
-			<input type="text" name="a_name" class="display-none" placeholder="テスト太郎" >
+		<form method="POST" name="a_regist" class="div-regist-btn" action="answer.html">
+			<input type="text" name="a_name" class="display-none" value="">
 			<textarea name="a_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code2" class="display-none" cols="100" rows="10"></textarea>
-			<a href="answer.html" onclick="document.a_regist.submit();" class="btn btn-black">回答を修正する</a>
+			<button type="submit" class="btn btn-black" name="a_regist" value="a_send_fix">回答を修正する</button>
 		</form>
 	</div>
 </body>

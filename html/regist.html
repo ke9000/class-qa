@@ -12,7 +12,7 @@
 	<hr>
 	<a href="index.html" class="btn btn-blue">←前の画面に戻る</a>
 	<br>
-	<form method="POST" name="q_regist" action="regist_c.html">
+	<form method="POST" action="regist_c.html">
 		<h3>投稿者</h3>
 		<input type="text" name="q_name" id="" placeholder="テスト太郎" value="" required minlength="1">
 		<h3>質問タイトル</h3>
@@ -31,8 +31,7 @@
 		<p class="form-commnet">javascriptのソースコードをコピペで貼り付けてください</p>
 		<textarea name="q_code2" id="" cols="100" rows="10"></textarea>
 		<br>
-		<button type="submit" class="btn btn-blue" value="確定">質問する</button>
-		<!--<a href="regist_c.html" onclick="document.q_regist.submit();" class="btn btn-blue">質問する</a>-->
+		<button type="submit" class="btn btn-blue" name="q_regist" value="q_send_check">質問する</button>
 	</form>
 </body>
 </html>

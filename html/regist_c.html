@@ -62,24 +62,24 @@ function call_a(){
 	</table>
 
 	<div class="regist-btn">
-		<form method="POST" name="q_regist" class="div-regist-btn" action="regist.html">
-			<input type="text" name="q_name" class="display-none" placeholder="テスト太郎" >
-			<input type="text" name="q_title" class="display-none" placeholder="第N回 課題Mでエラーが表示されます">
-			<input type="text" name="q_mail" class="display-none" placeholder="sample@example.com">
+		<form method="POST" class="div-regist-btn" action="index.html">
+			<input type="text" name="q_name" class="display-none" value="" >
+			<input type="text" name="q_title" class="display-none" value="">
+			<input type="text" name="q_mail" class="display-none" value="">
 			<textarea name="q_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="q_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="q_code2" class="display-none" cols="100" rows="10"></textarea>
-			<button type="submit" class="btn btn-blue" value="確定">質問する</button>
+			<button type="submit" class="btn btn-blue" name="q_regist" value="q_send_submit">質問する</button>
 		</form>
 		
-		<form method="POST" name="q_regist" class="div-regist-btn" action="regist.html">
-			<input type="text" name="q_name" class="display-none" placeholder="テスト太郎" >
-			<input type="text" name="q_title" class="display-none" placeholder="第N回 課題Mでエラーが表示されます">
-			<input type="text" name="q_mail" class="display-none" placeholder="sample@example.com">
+		<form method="POST" class="div-regist-btn" action="regist.html">
+			<input type="text" name="q_name" class="display-none" value="">
+			<input type="text" name="q_title" class="display-none" value="">
+			<input type="text" name="q_mail" class="display-none" value="">
 			<textarea name="q_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="q_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="q_code2" class="display-none" cols="100" rows="10"></textarea>
-			<button type="submit" class="btn btn-black" value="確定">回答を修正する</button>
+			<button type="submit" class="btn btn-black" name="q_regist" value="q_send_fix">回答を修正する</button>
 		</form>
 	</div>
 </body>
