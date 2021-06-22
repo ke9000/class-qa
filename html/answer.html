@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+	<title>基礎プログラミング演習 質問システム : 回答</title>
+</head>
+<body>
+	<h1>基礎プログラミング演習 質問システム</h1>
+	<hr>
+	<a href="detail.html" class="btn btn-blue">←前の画面に戻る</a>
+	<br>
+	<table border="1" class="detail">
+		<tr>
+			<th class="q-no">No.</th>
+			<th class="">質問者</th>
+			<th class="">質問日時</th>
+			<th class="q-state">回答状態</th>
+		</tr>
+		<tr>
+			<td class="q-no">1</td>
+			<td class="">テスト太郎</td>
+			<td>2021-01-01 00:00:00</td>
+			<td class="q-state">未回答</td>
+		</tr>
+		<tr>
+			<th colspan="2" class="q-detail">質問タイトル</th>
+			<td colspan="2" class="q-detail">パソコンが壊れました</td>
+		</tr>
+		<tr>
+			<th colspan="2" class="q-detail">メールアドレス</th>
+			<td colspan="2" class="q-detail">test@examle.com</td>
+		</tr>
+		<tr>
+			<th colspan="2" class="q-detail">質問詳細</th>
+			<td colspan="2" class="q-detail">ああああああ<br>aaaaaaa</td>
+		</tr>
+		<tr>
+			<th colspan="2" class="q-detail">コード (html)</th>
+			<td colspan="2" class="q-detail">
+				<pre>
+					<code>
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;テスト&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h1&gt;Hello, World&lt;/h1&gt;
+	&lt;body&gt;
+&lt;/html&gt;
+					</code>
+				</pre>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2" class="q-detail">コード (javascript)</th>
+			<td colspan="2">
+				<pre>
+					<code>
+function call_a(){
+	alert('hello, world');
+}
+					</code>
+				</pre>
+			</td>
+		</tr>
+	</table>
+	
+	<br>
+	<hr>
+	<br>
+
+	<form method="POST" name="a_regist" action="answer_c.php">
+		<h3>回答者</h3>
+		<input type="text" name="a_name" id="" placeholder="先生次郎" required>
+		<h3>回答</h3>
+		<textarea name="a_content" id="" cols="100" rows="10" required></textarea>
+		<h3>コード (html) </h3>
+		<p class="form-commnet">htmlのソースコードをコピペで貼り付けてください</p>
+		<textarea name="a_code1" id="" cols="100" rows="10"></textarea>
+		<h3>コード (javascript) </h3>
+		<p class="form-commnet">javascriptのソースコードをコピペで貼り付けてください</p>
+		<textarea name="a_code2" id="" cols="100" rows="10"></textarea>
+		<br>
+		<h3>回答状態</h3>
+		<div class="select">
+			<select name="state" required>
+				<option value="0">未回答</option>
+				<option value="1">回答作成中</option>
+				<option value="2" selected>回答済み</option>
+				<option value="3">回答スキップ</option>
+			</select>
+		</div>
+		<br>
+		<button type="submit" class="btn btn-green" name="a_regist" value="a_send_check">回答する</button>
+	</form>
+</body>
+</html>
