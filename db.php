@@ -1,17 +1,17 @@
 <?php
+/**
+ * DB環境設定読み込み
+ */
+$db_ini = parse_ini_file("sample.ini");
+
+$hostname = $db_ini['host'];
+$port = $db_ini['port'];
+$user = $db_ini['user'];
+$pass = $db_ini['pass'];
+$dbname = $db_ini['database'];
+
+
 class db{
-	/**
-	 * DB環境設定読み込み
-	 */
-	$db_ini = parse_ini_file("dbconf.ini");
-
-	$host = $db_ini['host'];
-	$port = $db_ini['port'];
-	$user = $db_ini['user'];
-	$pass = $db_ini['pass'];
-	$database = $db_ini['database'];
-	$table = $db_ini['table']
-
 	/**
 	 * DB接続
 	 */
