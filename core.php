@@ -3,6 +3,10 @@ $ini = parse_ini_file("dbconf.ini");
 $file = $ini['file'];
 $db_file = "./".$file;
 
+date_default_timezone_set('Asia/Tokyo');
+
+$debug = $ini['debug'];
+
 function db_connect(){
 	global $db_file;
 	$db = new SQLite3($db_file);
@@ -51,6 +55,27 @@ function db_query_fetch(string $query){
 	return $lines;
 }
 
+/**
+ * 現在時刻を返す
+ * @return string 時間
+ * ex: `2021-01-01 00:00:00`
+ */
+function getCurrentTime(){
+	return $currentTime = date('Y-m-d H:i:s');
+}
 
-
+/**
+ * デバッグ
+ * @param string $str デバッグ内容
+ * 
+ */
+function debug(string $str){
+	global $debug;
+	if($debug == 1){
+		echo "<b>Debug</b>: $str<br>\n";
+	} else {
+        echo "<script>console.log(\"$str\");</script>\n";
+    }
+	return null;
+}
 ?>

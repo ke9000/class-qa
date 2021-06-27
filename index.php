@@ -1,11 +1,75 @@
-<?php require "core.php" 
+<?php require "core.php";
 /**
  * get_qestion
+ * 
+ */
+if(isset($_POST['q_regist'])){
+	$name = $title = $mail = $content = $code1 = $code2 = "";
+	$time = getCurrentTime();
+	if(isset($_POST['q_name'])){ $name = htmlspecialchars($_POST['q_name']);}
+	if(isset($_POST['q_title'])){ $title = htmlspecialchars($_POST['q_title']);}
+	if(isset($_POST['q_mail'])){ $mail = htmlspecialchars($_POST['q_mail']);}
+	if(isset($_POST['q_content'])){ $content = htmlspecialchars($_POST['q_content']);}
+	if(isset($_POST['q_code1'])){ $code1 = htmlspecialchars($_POST['q_code1']);}
+	if(isset($_POST['q_code2'])){ $code2 = htmlspecialchars($_POST['q_code2']);}
+
+	$query = 
+		"INSERT INTO 
+		qa(questioner, subject, mail, question_content, code_content_1, code_content_2, created_at, update_at) 
+		VALUES 
+		($name, $title, $mail, $content, $code1, $code2, $time, $time)";
+		
+		$state = db_query($query);
+	
+		if(!$state){
+			debug("q_regist_error/db_query_fetch_error");
+			debug($query);
+		}
+}
+/**
  * 
  * get_answer
  * 
  */
+if(isset($_POST['a_regist'])){
+	$name = $content = $code1 = $code2 = "";
+	$state = 1;
+	$time = getCurrentTime();
+	if(!isset($_POST['id'])){ 
+		debug("a_regist/POST['id'] not found");
+	} else {
+		$id = $_POST['id'];
+		if(isset($_POST['a_name'])){ $name = htmlspecialchars($_POST['a_name']);}
+		if(isset($_POST['a_content'])){ $content = htmlspecialchars($_POST['a_content']);}
+		if(isset($_POST['a_code1'])){ $code1 = htmlspecialchars($_POST['a_code1']);}
+		if(isset($_POST['a_code2'])){ $code2 = htmlspecialchars($_POST['a_code2']);}
+		if(isset($_POST['a_state'])){ $state = $_POST['a_state'];}
 
+		$query = 
+		"UPDATE qa SET 
+		answer = $name, answer_content = $content, $answer_code_content_1 = $code1, $answer_code_content_2 = $code2, state = $state, update_at = $time
+		WHERE id = $id";
+		
+		$state = db_query($query);
+	
+		if(!$state){
+			debug("a_regist_error/db_query_fetch_error");
+			debug($query);
+		}
+	}
+}
+
+
+ /**
+  * user判定
+  */
+	if((!isset($_GET['u']))||($_GET['u'] == '')){
+		$user = '';
+	} elseif($_GET['u']=='sa') {
+		$user = 'sa';
+	} elseif($_GET['u']='t'){
+		$user = 't';
+	}
 
 
 ?>
@@ -40,7 +104,7 @@
 			</th>
 		</tr>
 		<?php
-		$query = "SELECT id, subject, questioner, state FROM qa ORDER BY ASC";
+		$query = "SELECT id, subject, questioner, state FROM qa ORDER BY ASC id";
 		$lines[] = db_query_fetch($query);
 		for($i=0; $i<=count($lines); $i++){
 			echo <<<EOT
@@ -55,7 +119,7 @@
 					$lines[$i]['state']
 				</td>
 				<td class="q-detail-link">
-					<a href="detail.php?id=$lines[$i]['id']">詳細</a>
+					<a href="detail.php?id=$lines[$i]['id']?u=$user">詳細</a>
 				</td>
 			</tr>
 			EOT;
