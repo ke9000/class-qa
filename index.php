@@ -15,9 +15,9 @@ if(isset($_POST['q_regist'])){
 
 	$query = 
 		"INSERT INTO 
-		qa(questioner, subject, mail, question_content, code_content_1, code_content_2, created_at, update_at) 
+		qa(questioner, subject, mail, question_content, code_content_1, code_content_2, state, created_at, update_at) 
 		VALUES 
-		($name, $title, $mail, $content, $code1, $code2, $time, $time)";
+		(\"$name\", \"$title\", \"$mail\", \"$content\", \"$code1\", \"$code2\", 0, \"$time\", \"$time\")";
 		
 		$state = db_query($query);
 	
@@ -59,7 +59,6 @@ if(isset($_POST['a_regist'])){
 	}
 }
 
-
  /**
   * user判定
   */
@@ -70,9 +69,8 @@ if(isset($_POST['a_regist'])){
 	} elseif($_GET['u']='t'){
 		$user = 't';
 	}
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,7 +103,7 @@ if(isset($_POST['a_regist'])){
 		</tr>
 		<?php
 		$query = "SELECT id, subject, questioner, state FROM qa ORDER BY ASC id";
-		$lines[] = db_query_fetch($query);
+		$lines = db_query_fetch($query);
 		for($i=0; $i<=count($lines); $i++){
 			echo <<<EOT
 			<tr>
@@ -119,7 +117,7 @@ if(isset($_POST['a_regist'])){
 					$lines[$i]['state']
 				</td>
 				<td class="q-detail-link">
-					<a href="detail.php?id=$lines[$i]['id']?u=$user">詳細</a>
+					<a href="detail.php?id=$lines[$i]['id']&u=$user">詳細</a>
 				</td>
 			</tr>
 			EOT;

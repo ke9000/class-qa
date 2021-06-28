@@ -78,4 +78,29 @@ function debug(string $str){
     }
 	return null;
 }
+
+/**
+ * 回答状態を文字で返す
+ * 0 = 未回答
+ * 1 = 回答作成中
+ * 2 = 回答済み
+ * 4 = 回答せず
+ */
+function getAnsState(int $state){
+	switch($state){
+		case 0:
+			$str = "未回答";
+			break;
+		case 1:
+			$str = "回答作成中";
+			break;
+		case 2:
+			$str = "回答済み";
+			break;
+		case 3:
+			$str = "回答せず";
+	}
+
+	return $str;
+}
 ?>
