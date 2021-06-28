@@ -13,6 +13,7 @@
 	<a href="index.html" class="btn btn-blue">←前の画面に戻る</a>
 	<br>
 	<form method="POST" action="regist_c.html">
+		<input type="text" name="id" class="display-none" value="" >
 		<h3>投稿者</h3>
 		<input type="text" name="q_name" id="" placeholder="テスト太郎" value="" required minlength="1">
 		<h3>質問タイトル</h3>
@@ -20,7 +21,7 @@
 		<h3>メールアドレス</h3>
 		<p class="form-commnet">この欄は教員とSAのみに表示されます</p>
 		<p class="form-commnet">都市大メールアドレスのみ受け付けます</p>
-		<input type="text" name="q_mail" id="" placeholder="sample@example.com" value="" required pattern="g\d{7}@tcu.ac.jp">
+		<input type="text" name="q_mail" id="" placeholder="g9999999@tcu.ac.jp" value="" required pattern="g\d{7}@tcu.ac.jp">
 		<h3>質問</h3>
 		<p class="form-commnet">なるだけ詳細に書いてください。</p>
 		<p class="form-commnet">(例:画面に何も表示されない / aleartが表示されない / ～～というエラーがコンソールに表示される 等)</p>
