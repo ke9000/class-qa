@@ -105,22 +105,41 @@ if(isset($_POST['a_regist'])){
 		$query = "SELECT id, subject, questioner, state FROM qa ORDER BY ASC id";
 		$lines = db_query_fetch($query);
 		for($i=0; $i<=count($lines); $i++){
-			echo <<<EOT
-			<tr>
-				<td class="q-no">
-					$lines[$i]['id']
-				</td>
-				<td class="q-title">
-					$lines[$i]['subject']
-				</td>
-				<td class="q-state">
-					$lines[$i]['state']
-				</td>
-				<td class="q-detail-link">
-					<a href="detail.php?id=$lines[$i]['id']&u=$user">詳細</a>
-				</td>
-			</tr>
-			EOT;
+			if($user=='' && ($lines[$i]['state']== 0 || $lines[$i]['state']== 2)){
+				echo <<<EOT
+				<tr>
+					<td class="q-no">
+						$lines[$i]['id']
+					</td>
+					<td class="q-title">
+						$lines[$i]['subject']
+					</td>
+					<td class="q-state">
+						$lines[$i]['state']
+					</td>
+					<td class="q-detail-link">
+						<a href="detail.php?id=$lines[$i]['id']&u=$user">詳細</a>
+					</td>
+				</tr>
+				EOT;
+			} elseif($user == 'sa'|| $user=='t') {
+				echo <<<EOT
+				<tr>
+					<td class="q-no">
+						$lines[$i]['id']
+					</td>
+					<td class="q-title">
+						$lines[$i]['subject']
+					</td>
+					<td class="q-state">
+						$lines[$i]['state']
+					</td>
+					<td class="q-detail-link">
+						<a href="detail.php?id=$lines[$i]['id']&u=$user">詳細</a>
+					</td>
+				</tr>
+				EOT;
+			}
 		}
 		?>
 	</table>

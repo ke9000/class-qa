@@ -15,24 +15,26 @@ if(!isset($_GET['id'])){
 	exit();
 } else {
 	$id = $_GET['id'];
-	$q_name = $q_time = $title = $mail = $q_content = $q_code1 = $q_code2 = "";
-	$a_name = $a_time = $a_content = $a_code1 = $a_code2 = "";
-	$state = 1;
+	$q_name = $created_at = $title = $mail = $q_content = $q_code1 = $q_code2 = "";
+	$a_name = $updated_at = $a_content = $a_code1 = $a_code2 = "";
+	$state = 0;
 
 	$query = "SELECT * FROM qa WHERE id = $id";
 	$lines = db_query_fetch($query);
 
-	if($lines[0]['questioner']){$q_name = $lines[0]['questioner'];}
-	if($lines[0]['created_at']){$q_time = $lines[0]['created_at'];}
-	/**作業中！ */
-	$title = $lines[0]['title'];
-	$mail = $lines[0]['mail'];
-	$q_content = $lines[0]['q_content'];
-	$q_code1 = $lines[0]['q_code1'];
-	$q_code2 = $lines[0]['q_code2'];
-	$state = $lines[0]['state'];
-	$created_at = $lines[0]['created_at'];
-	$updated_at = $lines[0]['updated_at'];
+	if($lines[0]['q_name']){$q_name = $lines[0]['q_name'];}
+	if($lines[0]['title']){$title = $lines[0]['title'];}
+	if($lines[0]['mail']){$mail = $lines[0]['mail'];}
+	if($lines[0]['q_content']){$q_content = $lines[0]['q_content'];}
+	if($lines[0]['q_code1']){$q_code1 = $lines[0]['q_code1'];}
+	if($lines[0]['q_code2']){$q_code2 = $lines[0]['q_code2'];}
+	if($lines[0]['a_name']){$a_name = $lines[0]['a_name'];}
+	if($lines[0]['a_content']){$a_name = $lines[0]['a_content'];}
+	if($lines[0]['a_code1']){$a_name = $lines[0]['a_code1'];}
+	if($lines[0]['a_code2']){$a_name = $lines[0]['a_code2'];}
+	if($lines[0]['state']){$state = $lines[0]['state'];}
+	if($lines[0]['created_at']){$created_at = $lines[0]['created_at'];}
+	if($lines[0]['updated_at']){$updated_at = $lines[0]['updated_at'];}
 }
 
 
@@ -52,7 +54,7 @@ if(!isset($_GET['id'])){
 
 	<title>基礎プログラミング演習 質問システム : 詳細</title>
 </head>
-<body>
+<body>''
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
 	<div class="detail-btns">
@@ -100,14 +102,6 @@ if(!isset($_GET['id'])){
 			<td colspan="2" class="q-detail">
 <pre><code>
 <?php echo($q_code1);?>
-&lt;html&gt;
-	&lt;head&gt;
-		&lt;title&gt;テスト&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;h1&gt;Hello, World&lt;/h1&gt;
-	&lt;body&gt;
-&lt;/html&gt;
 </code></pre>
 			</td>
 		</tr>
@@ -116,9 +110,6 @@ if(!isset($_GET['id'])){
 			<td colspan="2">
 <pre><code>
 <?php echo($q_code2);?>
-function call_a(){
-	alert('hello, world');
-}
 </code></pre>
 			</td>
 		</tr>
@@ -128,7 +119,13 @@ function call_a(){
 	<hr>
 	<br>
 
-	<table border="1" class="answer">
+	<table border="1" class="answer
+	<?php 
+	if($user='' && $state != 2){
+		echo("display-none");
+	}
+	?>
+	">
 		<tr>
 			<th class="q-detail">回答日時</th>
 			<th class="q-detail">回答者</th>
@@ -136,25 +133,18 @@ function call_a(){
 			
 		</tr>
 		<tr>
-			<td class="q-detail">2021-01-01 00:00:00</td>
-			<td class="q-detail">テスト次郎</td>
+			<td class="q-detail"><?php echo($updated_at);?></td>
+			<td class="q-detail"><?php echo($a_name);?></td>
 		</tr>
 		<tr>
 			<th class="q-detail">回答</th>
-			<td class="q-detail">alertを<br>スペルミスしています</td>
+			<td class="q-detail"><?php echo($a_content);?></td>
 		</tr>
 		<tr>
 			<th class="q-detail">コード (html)</th>
 			<td class="q-detail">
 <pre><code>
-&lt;html&gt;
-	&lt;head&gt;
-		&lt;title&gt;テスト&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;h1&gt;Hello, World&lt;/h1&gt;
-	&lt;body&gt;
-&lt;/html&gt;
+<?php echo($a_code1);?>
 </code></pre>
 			</td>
 		</tr>
@@ -162,9 +152,7 @@ function call_a(){
 			<th class="q-detail">コード (javascript)</th>
 			<td >
 <pre><code>
-function call_a(){
-	alert('hello, world');
-}
+<?php echo($a_code2);?>
 </code></pre>
 			</td>
 		</tr>
