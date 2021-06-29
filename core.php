@@ -98,7 +98,7 @@ function getAnsState(int $state){
 			$str = "回答済み";
 			break;
 		case 3:
-			$str = "回答せず";
+			$str = "回答スキップ";
 	}
 
 	return $str;
