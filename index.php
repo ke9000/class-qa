@@ -3,21 +3,21 @@
  * get_qestion
  * 
  */
-if(isset($_POST['q_regist'])){
+if(isset($_POST['q_regist']) && $_POST['q_regist']=="q_send_submit"){
 	$name = $title = $mail = $content = $code1 = $code2 = "";
 	$time = getCurrentTime();
-	if(isset($_POST['q_name'])){ $name = htmlspecialchars($_POST['q_name']);}
-	if(isset($_POST['q_title'])){ $title = htmlspecialchars($_POST['q_title']);}
-	if(isset($_POST['q_mail'])){ $mail = htmlspecialchars($_POST['q_mail']);}
-	if(isset($_POST['q_content'])){ $content = htmlspecialchars($_POST['q_content']);}
-	if(isset($_POST['q_code1'])){ $code1 = htmlspecialchars($_POST['q_code1']);}
-	if(isset($_POST['q_code2'])){ $code2 = htmlspecialchars($_POST['q_code2']);}
+	if(isset($_POST['q_name'])){ $q_name = htmlspecialchars($_POST['q_name']);}
+	if(isset($_POST['q_title'])){ $q_title = htmlspecialchars($_POST['q_title']);}
+	if(isset($_POST['q_mail'])){ $q_mail = htmlspecialchars($_POST['q_mail']);}
+	if(isset($_POST['q_content'])){ $q_content = htmlspecialchars($_POST['q_content']);}
+	if(isset($_POST['q_code1'])){ $q_code1 = htmlspecialchars($_POST['q_code1']);}
+	if(isset($_POST['q_code2'])){ $q_code2 = htmlspecialchars($_POST['q_code2']);}
 
 	$query = 
 		"INSERT INTO 
-		qa(questioner, subject, mail, question_content, code_content_1, code_content_2, state, created_at, update_at) 
+		qa(questioner, subject, q_mail, question_content, code_content_1, code_content_2, state, created_at, update_at) 
 		VALUES 
-		(\"$name\", \"$title\", \"$mail\", \"$content\", \"$code1\", \"$code2\", 0, \"$time\", \"$time\")";
+		(\"$q_name\", \"$q_title\", \"$q_mail\", \"$q_content\", \"$q_code1\", \"$q_code2\", 0, \"$time\", \"$time\")";
 		
 		$state = db_query($query);
 	
@@ -31,7 +31,7 @@ if(isset($_POST['q_regist'])){
  * get_answer
  * 
  */
-if(isset($_POST['a_regist'])){
+if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 	$name = $content = $code1 = $code2 = "";
 	$state = 1;
 	$time = getCurrentTime();
