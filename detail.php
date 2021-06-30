@@ -116,10 +116,17 @@ if(!isset($_GET['id'])){
 	<br>
 	<hr>
 	<br>
-
+	
+	<?php
+	debug("user".$user);
+	debug("state".$state);
+	?>
+	
 	<table border="1" class="answer
 	<?php 
+
 	if($user='' && $state != 2){
+
 		echo("display-none");
 	}
 	?>

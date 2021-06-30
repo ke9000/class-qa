@@ -66,6 +66,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 	} elseif($_GET['u']='t'){
 		$user = 't';
 	}
+	echo($user);
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +100,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 			</th>
 		</tr>
 		<?php
-		$query = "SELECT id, subject, questioner, state FROM qa ORDER BY ASC id";
+		$query = "SELECT id, q_title, q_name, state FROM qa ORDER BY ASC id";
 		$lines = db_query_fetch($query);
 		for($i=0; $i<=count($lines); $i++){
 			if($user=='' && ($lines[$i]['state']== 0 || $lines[$i]['state']== 2)){
