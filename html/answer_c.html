@@ -119,18 +119,33 @@ function call_a(){
 
 	<div class="regist-btn">
 		<form method="POST" name="a_regist" class="div-regist-btn" action="index.html">
+			<input type="text" name="id" class="display-none" value="" >
 			<input type="text" name="a_name" class="display-none" value="" >
 			<textarea name="a_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code2" class="display-none" cols="100" rows="10"></textarea>
+			<select class="display-none" name="state" required>
+				<option value="0">未回答</option>
+				<option value="1">回答作成中</option>
+				<option value="2" selected>回答済み</option>
+				<option value="3">回答スキップ</option>
+			</select>
 			<button type="submit" class="btn btn-green" name="a_regist" value="a_send_submit">回答する</button>
 		</form>
 		
 		<form method="POST" name="a_regist" class="div-regist-btn" action="answer.html">
+			<input type="text" name="id" class="display-none" value="" >
 			<input type="text" name="a_name" class="display-none" value="">
 			<textarea name="a_content" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code1" class="display-none" cols="100" rows="10"></textarea>
 			<textarea name="a_code2" class="display-none" cols="100" rows="10"></textarea>
+			<select class="display-none" name="state" required>
+				<option value="0">未回答</option>
+				<option value="1">回答作成中</option>
+				<option value="2" selected>回答済み</option>
+				<option value="3">回答スキップ</option>
+			</select>
+			<!-- phpにするときは $_POST['state']のvalueがif-Trueになるとき echo "selected"にする-->
 			<button type="submit" class="btn btn-black" name="a_regist" value="a_send_fix">回答を修正する</button>
 		</form>
 	</div>
