@@ -68,7 +68,7 @@
 			<input type="text" name="q_title" class="display-none" value="<?php if(isset($_POST['q_title'])){echo(htmlspecialchars($_POST['q_title']));}?>">
 			<input type="text" name="q_mail" class="display-none" value="<?php if(isset($_POST['q_mail'])){echo(htmlspecialchars($_POST['q_mail']));}?>">
 			<textarea name="q_content" class="display-none" cols="100" rows="10"><?php if(isset($_POST['q_content'])){echo(htmlspecialchars($_POST['q_content']));}?></textarea>
-			<textarea name="q_code1" class="display-none" cols="100" rows="10"><?php if(isset($_POST['q_code1'])){echo(htmlspecialchars($_POST['q_code2']));}?></textarea>
+			<textarea name="q_code1" class="display-none" cols="100" rows="10"><?php if(isset($_POST['q_code1'])){echo(htmlspecialchars($_POST['q_code1']));}?></textarea>
 			<textarea name="q_code2" class="display-none" cols="100" rows="10"><?php if(isset($_POST['q_code2'])){echo(htmlspecialchars($_POST['q_code2']));}?></textarea>
 			<button type="submit" class="btn btn-black" name="q_regist" value="q_send_fix">回答を修正する</button>
 		</form>

@@ -12,13 +12,10 @@ if(isset($_POST['q_regist']) && $_POST['q_regist']=="q_send_submit"){
 	if(isset($_POST['q_content'])){ $q_content = htmlspecialchars($_POST['q_content']);}
 	if(isset($_POST['q_code1'])){ $q_code1 = htmlspecialchars($_POST['q_code1']);}
 	if(isset($_POST['q_code2'])){ $q_code2 = htmlspecialchars($_POST['q_code2']);}
-
+	
 	$query = 
-		"INSERT INTO 
-		qa(questioner, subject, q_mail, question_content, code_content_1, code_content_2, state, created_at, update_at) 
-		VALUES 
-		(\"$q_name\", \"$q_title\", \"$q_mail\", \"$q_content\", \"$q_code1\", \"$q_code2\", 0, \"$time\", \"$time\")";
-		
+		"INSERT INTO qa(q_name, q_title, q_mail, q_content, q_code1, q_code2, state, created_at, update_at) VALUES (\"$q_name\", \"$q_title\", \"$q_mail\", \"$q_content\", \"$q_code1\", \"$q_code2\", 0, \"$time\", \"$time\")";
+
 		$state = db_query($query);
 	
 		if(!$state){
@@ -84,7 +81,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
-	<a href="regist.html" class="btn btn-blue">質問を投稿する</a>
+	<a href="regist.php" class="btn btn-blue">質問を投稿する</a>
 	<br>
 	<table border="1" class="index">
 		<tr>
