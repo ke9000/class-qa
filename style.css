@@ -1,0 +1,244 @@
+
+body {
+	margin: 10px auto 10px auto;
+	padding: 10px;
+	min-width: 500px;
+	max-width: 1000px;
+}
+
+.btn {
+	margin: 10px 0px;
+	font-weight: 700;
+	display: inline-block;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	color: #ffffff;
+}
+
+button.btn{
+	font-size: large;
+}
+
+.btn-blue{
+	border: 2px solid rgb(24, 150, 235);
+	background: rgb(24, 150, 235);
+}
+
+.btn-black {
+	border: 2px solid rgb(0, 0, 0);
+	background: rgb(0, 0, 0);
+}
+
+.btn-green {
+	border: 2px solid rgb(32, 160, 0);
+	/*border: 2px solid rgb(32, 160, 0); */
+	background: rgb(32, 160, 0);
+}
+
+/**
+	table関連ここから
+*/
+
+table {
+	border: 1;
+	border-collapse: collapse;
+	min-width: 300px;
+	width: 100%;
+	max-width: 1000px;
+}
+
+table.index th {
+	background-color: rgb(24, 150, 235);
+	color: #ffffff;
+	text-align: center;
+}
+
+table.detail th {
+	background-color: rgb(24, 150, 235);
+	color: #ffffff;
+}
+
+table.answer th {
+	background-color: rgb(32, 160, 0);
+	color: #ffffff;
+}
+
+table.check th{
+	text-align: left;
+	padding-left: 10px;
+}
+
+table.check td{
+	padding-left: 10px;
+}
+
+td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.q-no {
+	text-align: center;
+	width: 30px;
+}
+
+td.q-title {
+	padding-left: 10px;
+}
+
+.q-state {
+	text-align: center;
+	width: 80px;
+}
+
+.q-detail-link {
+	text-align: center;
+	width: 50px;
+}
+
+
+th.q-detail {
+	padding-left: 10px;
+	text-align: left;
+}
+
+td.q-detail {
+	padding-left: 10px ;
+}
+
+/**
+	table関連ここまで
+*/
+
+/**
+	ここからregist.php
+*/
+
+h3 {
+	margin-bottom: 2px;
+}
+
+.form-commnet{
+	margin: 2px;
+	color: rgb(133, 133, 133);
+}
+
+input {
+	min-width: 300px;
+	width: 50%;
+	height: 30px;
+}
+
+textarea {
+	padding-top: 10px;
+	font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	width: 80%;
+	min-width: 500px;
+	max-width: 1000px;
+}
+
+input[type="text"],
+textarea {
+	outline: none;
+	border: 1px solid #aaa;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  box-shadow: 0 0 7px rgb(24, 150, 235);
+  border: 1px solid rgb(24, 150, 235);
+  outline: 0;
+}
+
+/**
+	ここからregist_c.php
+*/
+
+.display-none {
+	display: none;	
+}
+
+form.div-regist-btn {
+	margin: 10px 10px;
+}
+
+code, pre {
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+.regist-btn{
+	display: inline-flex;
+}
+
+/**
+	detail.php
+*/
+
+.detail-btns{
+	position: relative;
+	margin-bottom: 40px;
+}
+
+.btn-left{
+	position: absolute;
+	left: 0;
+}
+
+.btn-right{
+	position: absolute;
+	right: 0;
+}
+
+/**
+	answer.php
+*/
+
+.select {
+	background: rgb(24, 150, 235);
+	height: 40px;
+	width: 300px;
+	border-radius: 5px;
+	margin: 10px;
+	position: relative;
+	z-index: 1;
+}
+
+.select::after {
+	position: absolute;
+	content: '';
+	width: 8px;
+	height: 8px;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%) rotate(45deg);
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	z-index: -1;
+}
+
+
+select {
+	/* 初期化 */
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: none;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	padding: 0 10px;
+	position: relative;
+}
+
+option{
+	color: black;
+}
