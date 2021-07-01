@@ -56,7 +56,7 @@ if(!isset($_GET['id'])){
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
 	<div class="detail-btns">
-		<a href="index.php" class="btn btn-blue btn-left">←前の画面に戻る</a>
+		<a href="index.php?u=<?php echo($user);?>" class="btn btn-blue btn-left">←前の画面に戻る</a>
 		<?php 
 		if($user == 'sa'||$user == 't'){
 			echo <<<EOF

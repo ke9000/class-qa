@@ -63,7 +63,7 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
-	<a href="detail.php?id=<?php echo($id);?>" class="btn btn-blue">←前の画面に戻る</a>
+	<a href="detail.php?id=<?php echo($id."&u=".$user);?>" class="btn btn-blue">←前の画面に戻る</a>
 	<br>
 	<table border="1" class="detail">
 		<tr>

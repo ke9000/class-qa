@@ -17,7 +17,6 @@ if(isset($_POST['q_regist']) && $_POST['q_regist']=="q_send_submit"){
 		"INSERT INTO qa(q_name, q_title, q_mail, q_content, q_code1, q_code2, state, created_at, update_at) VALUES (\"$q_name\", \"$q_title\", \"$q_mail\", \"$q_content\", \"$q_code1\", \"$q_code2\", 0, \"$time\", \"$time\")";
 
 		$state = db_query($query);
-		echo($state);
 		if(!$state){
 			debug("q_regist_error/db_query_fetch_error");
 			debug($query);
