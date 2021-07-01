@@ -1,15 +1,48 @@
 <?php
-$ini = parse_ini_file("dbconf.ini");
+
+$ini = parse_ini_file("qaconf.ini");
 $file = $ini['file'];
 $db_file = "./".$file;
 
 date_default_timezone_set('Asia/Tokyo');
 
 $debug = $ini['debug'];
+if($debug == "1"){
+	ini_set("display_errors", 'On');
+	error_reporting(E_ALL);
+}
+
+/**
+ * デバッグ
+ * @param string $str デバッグ内容
+ * 
+ */
+function debug(string $str){
+	global $debug;
+	if($debug == 1){
+		echo "<b>Debug</b>: $str<br>\n";
+	} else {
+        echo "<script>console.log(\"$str\");</script>\n";
+
+    }
+	return null;
+}
+
+
+class sqlite extends SQLite3
+{
+    
+    function __construct()
+    {
+        global $db_file;
+        $this->open($db_file);
+    }
+}
 
 function db_connect(){
-	global $db_file;
-	$db = new SQLite3($db_file);
+
+	$db = new sqlite();
+
 	if($db){
 		return $db;
 	} else{
@@ -23,8 +56,10 @@ function db_connect(){
  * @return $lines 実行結果/null
  */
 function db_query(string $query){
+
 	$db = db_connect();
 	$lines = $db->exec($query);
+	debug($query);
 	if($lines){
 		$lines = "Query success";
 	} else {
@@ -40,10 +75,12 @@ function db_query(string $query){
  */
 function db_query_fetch(string $query){
 	$db = db_connect();
-	$lines = $db->query($query);
-	if($lines){
+	$lines = array();
+	debug($query);
+	$res = $db->query($query);
+	if($res){
 		$i = 0;
-		while($row = $lines->fetchArray()){
+		while($row = $res->fetchArray()){
 			$lines[$i]=$row;
 			$i++;
 		}
@@ -64,20 +101,6 @@ function getCurrentTime(){
 	return $currentTime = date('Y-m-d H:i:s');
 }
 
-/**
- * デバッグ
- * @param string $str デバッグ内容
- * 
- */
-function debug(string $str){
-	global $debug;
-	if($debug == 1){
-		echo "<b>Debug</b>: $str<br>\n";
-	} else {
-        echo "<script>console.log(\"$str\");</script>\n";
-    }
-	return null;
-}
 
 /**
  * 回答状態を文字で返す

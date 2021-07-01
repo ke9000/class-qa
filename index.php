@@ -12,15 +12,11 @@ if(isset($_POST['q_regist']) && $_POST['q_regist']=="q_send_submit"){
 	if(isset($_POST['q_content'])){ $q_content = htmlspecialchars($_POST['q_content']);}
 	if(isset($_POST['q_code1'])){ $q_code1 = htmlspecialchars($_POST['q_code1']);}
 	if(isset($_POST['q_code2'])){ $q_code2 = htmlspecialchars($_POST['q_code2']);}
-
-	$query = 
-		"INSERT INTO 
-		qa(questioner, subject, q_mail, question_content, code_content_1, code_content_2, state, created_at, update_at) 
-		VALUES 
-		(\"$q_name\", \"$q_title\", \"$q_mail\", \"$q_content\", \"$q_code1\", \"$q_code2\", 0, \"$time\", \"$time\")";
-		
-		$state = db_query($query);
 	
+	$query = 
+		"INSERT INTO qa(q_name, q_title, q_mail, q_content, q_code1, q_code2, state, created_at, update_at) VALUES (\"$q_name\", \"$q_title\", \"$q_mail\", \"$q_content\", \"$q_code1\", \"$q_code2\", 0, \"$time\", \"$time\")";
+
+		$state = db_query($query);
 		if(!$state){
 			debug("q_regist_error/db_query_fetch_error");
 			debug($query);
@@ -39,15 +35,15 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 		debug("a_regist/POST['id'] not found");
 	} else {
 		$id = $_POST['id'];
-		if(isset($_POST['a_name'])){ $name = htmlspecialchars($_POST['a_name']);}
-		if(isset($_POST['a_content'])){ $content = htmlspecialchars($_POST['a_content']);}
-		if(isset($_POST['a_code1'])){ $code1 = htmlspecialchars($_POST['a_code1']);}
-		if(isset($_POST['a_code2'])){ $code2 = htmlspecialchars($_POST['a_code2']);}
-		if(isset($_POST['a_state'])){ $state = $_POST['a_state'];}
+		if(isset($_POST['a_name'])){ $a_name = htmlspecialchars($_POST['a_name']);}
+		if(isset($_POST['a_content'])){ $a_content = htmlspecialchars($_POST['a_content']);}
+		if(isset($_POST['a_code1'])){ $a_code1 = htmlspecialchars($_POST['a_code1']);}
+		if(isset($_POST['a_code2'])){ $a_code2 = htmlspecialchars($_POST['a_code2']);}
+		if(isset($_POST['state'])){ $state = $_POST['state'];}
 
 		$query = 
 		"UPDATE qa SET 
-		answer = $name, answer_content = $content, $answer_code_content_1 = $code1, $answer_code_content_2 = $code2, state = $state, update_at = $time
+		a_name = \"$a_name\", a_content = \"$a_content\", a_code1 = \"$a_code1\", a_code2 = \"$a_code2\", state = \"$state\", update_at = \"$time\"
 		WHERE id = $id";
 		
 		$state = db_query($query);
@@ -84,7 +80,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
-	<a href="regist.html" class="btn btn-blue">質問を投稿する</a>
+	<a href="regist.php" class="btn btn-blue">質問を投稿する</a>
 	<br>
 	<table border="1" class="index">
 		<tr>
@@ -102,23 +98,24 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 			</th>
 		</tr>
 		<?php
-		$query = "SELECT id, subject, questioner, state FROM qa ORDER BY ASC id";
+		$query = "SELECT * FROM qa ORDER BY id ASC";
 		$lines = db_query_fetch($query);
-		for($i=0; $i<=count($lines); $i++){
+		for($i=0; $i<count($lines); $i++){
+			$state_txt = getAnsState($lines[$i]['state']);
 			if($user=='' && ($lines[$i]['state']== 0 || $lines[$i]['state']== 2)){
 				echo <<<EOT
 				<tr>
 					<td class="q-no">
-						$lines[$i]['id']
+						{$lines[$i]['id']}
 					</td>
 					<td class="q-title">
-						$lines[$i]['subject']
+						{$lines[$i]['q_title']}
 					</td>
 					<td class="q-state">
-						$lines[$i]['state']
+						{$state_txt}
 					</td>
 					<td class="q-detail-link">
-						<a href="detail.php?id=$lines[$i]['id']&u=$user">詳細</a>
+						<a href="detail.php?id={$lines[$i]['id']}&u=$user">詳細</a>
 					</td>
 				</tr>
 				EOT;
@@ -126,16 +123,16 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 				echo <<<EOT
 				<tr>
 					<td class="q-no">
-						$lines[$i]['id']
+						{$lines[$i]['id']}
 					</td>
 					<td class="q-title">
-						$lines[$i]['subject']
+						{$lines[$i]['q_title']}
 					</td>
 					<td class="q-state">
-						$lines[$i]['state']
+						{$state_txt}
 					</td>
 					<td class="q-detail-link">
-						<a href="detail.php?id=$lines[$i]['id']&u=$user">詳細</a>
+						<a href="detail.php?id={$lines[$i]['id']}&u=$user">詳細</a>
 					</td>
 				</tr>
 				EOT;

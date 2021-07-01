@@ -1,4 +1,4 @@
-<?php
+<?php require "core.php";
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
 	$q_name = $created_at = $title = $mail = $q_content = $q_code1 = $q_code2 = "";
@@ -9,24 +9,24 @@ if(isset($_GET['id'])){
 	$lines = db_query_fetch($query);
 
 	if($lines[0]['q_name']){$q_name = $lines[0]['q_name'];}
-	if($lines[0]['q_title']){$title = $lines[0]['q_title'];}
-	if($lines[0]['q_mail']){$mail = $lines[0]['q_mail'];}
+	if($lines[0]['q_title']){$q_title = $lines[0]['q_title'];}
+	if($lines[0]['q_mail']){$q_mail = $lines[0]['q_mail'];}
 	if($lines[0]['q_content']){$q_content = $lines[0]['q_content'];}
 	if($lines[0]['q_code1']){$q_code1 = $lines[0]['q_code1'];}
 	if($lines[0]['q_code2']){$q_code2 = $lines[0]['q_code2'];}
 	if($lines[0]['a_name']){$a_name = $lines[0]['a_name'];}
-	if($lines[0]['a_content']){$a_name = $lines[0]['a_content'];}
-	if($lines[0]['a_code1']){$a_name = $lines[0]['a_code1'];}
-	if($lines[0]['a_code2']){$a_name = $lines[0]['a_code2'];}
+	if($lines[0]['a_content']){$a_content = $lines[0]['a_content'];}
+	if($lines[0]['a_code1']){$a_code1 = $lines[0]['a_code1'];}
+	if($lines[0]['a_code2']){$a_code2 = $lines[0]['a_code2'];}
 	if($lines[0]['state']){$state = $lines[0]['state'];}
 	if($lines[0]['created_at']){$created_at = $lines[0]['created_at'];}
-	if($lines[0]['updated_at']){$updated_at = $lines[0]['updated_at'];}
+	if($lines[0]['update_at']){$updated_at = $lines[0]['update_at'];}
 
-	if(isset($_POST['a_send_fix'])){
+	if(isset($_POST['a_regist'])){
 		if(isset($_POST['a_name'])){$a_name = $_POST['a_name'];}
-		if(isset($_POST['a_content'])){$a_name = $_POST['a_content'];}
-		if(isset($_POST['a_code1'])){$a_name = $_POST['a_code1'];}
-		if(isset($_POST['a_code2'])){$a_name = $_POST['a_code2'];}
+		if(isset($_POST['a_content'])){$a_content = $_POST['a_content'];}
+		if(isset($_POST['a_code1'])){$a_code1 = $_POST['a_code1'];}
+		if(isset($_POST['a_code2'])){$a_code2 = $_POST['a_code2'];}
 		if(isset($_POST['state'])){$state = $_POST['state'];}
 	}
 } else {
@@ -63,7 +63,7 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
-	<a href="detail.html" class="btn btn-blue">←前の画面に戻る</a>
+	<a href="detail.php?id=<?php echo($id."&u=".$user);?>" class="btn btn-blue">←前の画面に戻る</a>
 	<br>
 	<table border="1" class="detail">
 		<tr>
@@ -88,7 +88,7 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">メールアドレス</th>
-			<td colspan="2" class="q-detail"><?php if($user = 't' || $user == 'sa'){echo($q_mail);} else { echo("教員/SAにのみメールアドレスを表示しています");}?></td>
+			<td colspan="2" class="q-detail"><?php if($user == 't' || $user == 'sa'){echo($q_mail);} else { echo("教員/SAにのみメールアドレスを表示しています");}?></td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">質問詳細</th>
@@ -117,7 +117,7 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 	<br>
 
 	<form method="POST" name="a_regist" action="answer_c.php?id=<?php echo($id."&u=".$user)?>">
-		<input type="text" name="id" class="display-none" value="<?php echo($q_code1);?>" >
+		<input type="text" name="id" class="display-none" value="<?php echo($id);?>" >
 		<h3>回答者</h3>
 		<input type="text" name="a_name" id="" placeholder="先生次郎" value="<?php echo($a_name);?>" required>
 		<h3>回答</h3>

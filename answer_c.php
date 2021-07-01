@@ -1,4 +1,5 @@
-<?php
+<?php require "core.php";
+
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
 	$q_name = $created_at = $title = $mail = $q_content = $q_code1 = $q_code2 = "";
@@ -9,26 +10,27 @@ if(isset($_GET['id'])){
 	$lines = db_query_fetch($query);
 
 	if($lines[0]['q_name']){$q_name = $lines[0]['q_name'];}
-	if($lines[0]['q_title']){$title = $lines[0]['q_title'];}
-	if($lines[0]['q_mail']){$mail = $lines[0]['q_mail'];}
+	if($lines[0]['q_title']){$q_title = $lines[0]['q_title'];}
+	if($lines[0]['q_mail']){$q_mail = $lines[0]['q_mail'];}
 	if($lines[0]['q_content']){$q_content = $lines[0]['q_content'];}
 	if($lines[0]['q_code1']){$q_code1 = $lines[0]['q_code1'];}
 	if($lines[0]['q_code2']){$q_code2 = $lines[0]['q_code2'];}
 	if($lines[0]['a_name']){$a_name = $lines[0]['a_name'];}
-	if($lines[0]['a_content']){$a_name = $lines[0]['a_content'];}
-	if($lines[0]['a_code1']){$a_name = $lines[0]['a_code1'];}
-	if($lines[0]['a_code2']){$a_name = $lines[0]['a_code2'];}
+	if($lines[0]['a_content']){$a_content = $lines[0]['a_content'];}
+	if($lines[0]['a_code1']){$a_code1 = $lines[0]['a_code1'];}
+	if($lines[0]['a_code2']){$a_code2 = $lines[0]['a_code2'];}
 	if($lines[0]['state']){$state = $lines[0]['state'];}
 	if($lines[0]['created_at']){$created_at = $lines[0]['created_at'];}
-	if($lines[0]['updated_at']){$updated_at = $lines[0]['updated_at'];}
+	if($lines[0]['update_at']){$updated_at = $lines[0]['update_at'];}
 
-	if(isset($_POST['a_send_check'])){
+	if(isset($_POST['a_regist'])){
 		if(isset($_POST['a_name'])){$a_name = $_POST['a_name'];}
-		if(isset($_POST['a_content'])){$a_name = $_POST['a_content'];}
-		if(isset($_POST['a_code1'])){$a_name = $_POST['a_code1'];}
-		if(isset($_POST['a_code2'])){$a_name = $_POST['a_code2'];}
+		if(isset($_POST['a_content'])){$a_content = $_POST['a_content'];}
+		if(isset($_POST['a_code1'])){$a_code1 = $_POST['a_code1'];}
+		if(isset($_POST['a_code2'])){$a_code2 = $_POST['a_code2'];}
 		if(isset($_POST['state'])){$state = $_POST['state'];}
-	}} else {
+	} 
+} else {
 	echo "質問IDが指定されていません <a href=\"./index.php\">戻る</a>";
 	exit();
 }
@@ -86,11 +88,11 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">メールアドレス</th>
-			<td colspan="2" class="q-detail"><?php if($user = 't' || $user == 'sa'){echo($q_mail);} else { echo("教員/SAにのみメールアドレスを表示しています");}?></td>
+			<td colspan="2" class="q-detail"><?php if($user == 't' || $user == 'sa'){echo($q_mail);} else { echo("教員/SAにのみメールアドレスを表示しています");}?></td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">質問詳細</th>
-			<td colspan="2" class="q-detail"><?php echo($q_content);?></td>
+			<td colspan="2" class="q-detail"><?php echo(nl2br($q_content));?></td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">コード (html)</th>
@@ -117,25 +119,25 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 	<table border="1" class="answer check">
 		<tr>
 			<th>回答者</th>
-			<td><?php echo($q_name);?></td>
+			<td><?php echo(htmlspecialchars($a_name));?></td>
 		</tr>
 		<tr>
 			<th>回答</th>
-			<td><?php echo($q_content);?></td>
+			<td><?php echo(nl2br(htmlspecialchars($a_content)));?></td>
 		</tr>
 		<tr>
 			<th>コード(html)</th>
 			<td>
 <pre><code>
-<?php echo($q_code1);?>
+<?php echo(htmlspecialchars($a_code1));?>
 </code></pre>
 			</td>
 		</tr>
 		<tr>
-			<th>コード(html)</th>
+			<th>コード(javascript)</th>
 			<td>
 <pre><code>
-<?php echo($q_code2);?>
+<?php echo(htmlspecialchars($a_code2));?>
 </code></pre>
 			</td>
 		</tr>
@@ -148,10 +150,10 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 	<div class="regist-btn">
 		<form method="POST" name="a_regist" class="div-regist-btn" action="index.php?id=<?php echo($id."&u=".$user)?>">
 			<input type="text" name="id" class="display-none" value="<?php echo($id);?>" >
-			<input type="text" name="a_name" class="display-none" value="<?php echo($a_name);?>" >
-			<textarea name="a_content" class="display-none" cols="100" rows="10"><?php echo($a_content);?></textarea>
-			<textarea name="a_code1" class="display-none" cols="100" rows="10"><?php echo($a_code1);?></textarea>
-			<textarea name="a_code2" class="display-none" cols="100" rows="10"><?php echo($a_code2);?></textarea>
+			<input type="text" name="a_name" class="display-none" value="<?php echo(htmlspecialchars($a_name));?>" >
+			<textarea name="a_content" class="display-none" cols="100" rows="10"><?php echo(htmlspecialchars($a_content));?></textarea>
+			<textarea name="a_code1" class="display-none" cols="100" rows="10"><?php echo(htmlspecialchars($a_code1));?></textarea>
+			<textarea name="a_code2" class="display-none" cols="100" rows="10"><?php echo(htmlspecialchars($a_code2));?></textarea>
 			<select class="display-none" name="state" required>
 				<option value="0" <?php if($state == 0){echo("selected");}?> >未回答</option>
 				<option value="1" <?php if($state == 1){echo("selected");}?> >回答作成中</option>
@@ -164,9 +166,9 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 		<form method="POST" name="a_regist" class="div-regist-btn" action="answer.php?id=<?php echo($id."&u=".$user)?>">
 			<input type="text" name="id" class="display-none" value="<?php echo($id);?>" >
 			<input type="text" name="a_name" class="display-none" value="<?php echo($a_name);?>">
-			<textarea name="a_content" class="display-none" cols="100" rows="10"><?php echo($a_content);?></textarea>
-			<textarea name="a_code1" class="display-none" cols="100" rows="10"><?php echo($a_code1);?></textarea>
-			<textarea name="a_code2" class="display-none" cols="100" rows="10"><?php echo($a_code2);?></textarea>
+			<textarea name="a_content" class="display-none" cols="100" rows="10"><?php echo(htmlspecialchars($a_content));?></textarea>
+			<textarea name="a_code1" class="display-none" cols="100" rows="10"><?php echo(htmlspecialchars($a_code1));?></textarea>
+			<textarea name="a_code2" class="display-none" cols="100" rows="10"><?php echo(htmlspecialchars($a_code2));?></textarea>
 			<select class="display-none" name="state" required>
 				<option value="0" <?php if($state == 0){echo("selected");}?> >未回答</option>
 				<option value="1" <?php if($state == 1){echo("selected");}?> >回答作成中</option>

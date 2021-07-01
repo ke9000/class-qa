@@ -16,25 +16,25 @@ if(!isset($_GET['id'])){
 } else {
 	$id = $_GET['id'];
 	$q_name = $created_at = $title = $mail = $q_content = $q_code1 = $q_code2 = "";
-	$a_name = $updated_at = $a_content = $a_code1 = $a_code2 = "";
+	$a_name = $update_at = $a_content = $a_code1 = $a_code2 = "";
 	$state = 0;
 
 	$query = "SELECT * FROM qa WHERE id = $id";
 	$lines = db_query_fetch($query);
 
 	if($lines[0]['q_name']){$q_name = $lines[0]['q_name'];}
-	if($lines[0]['q_title']){$title = $lines[0]['q_title'];}
-	if($lines[0]['q_mail']){$mail = $lines[0]['q_mail'];}
+	if($lines[0]['q_title']){$q_title = $lines[0]['q_title'];}
+	if($lines[0]['q_mail']){$q_mail = $lines[0]['q_mail'];}
 	if($lines[0]['q_content']){$q_content = $lines[0]['q_content'];}
 	if($lines[0]['q_code1']){$q_code1 = $lines[0]['q_code1'];}
 	if($lines[0]['q_code2']){$q_code2 = $lines[0]['q_code2'];}
 	if($lines[0]['a_name']){$a_name = $lines[0]['a_name'];}
-	if($lines[0]['a_content']){$a_name = $lines[0]['a_content'];}
-	if($lines[0]['a_code1']){$a_name = $lines[0]['a_code1'];}
-	if($lines[0]['a_code2']){$a_name = $lines[0]['a_code2'];}
+	if($lines[0]['a_content']){$a_content = $lines[0]['a_content'];}
+	if($lines[0]['a_code1']){$a_code1 = $lines[0]['a_code1'];}
+	if($lines[0]['a_code2']){$a_code2 = $lines[0]['a_code2'];}
 	if($lines[0]['state']){$state = $lines[0]['state'];}
 	if($lines[0]['created_at']){$created_at = $lines[0]['created_at'];}
-	if($lines[0]['updated_at']){$updated_at = $lines[0]['updated_at'];}
+	if($lines[0]['update_at']){$updated_at = $lines[0]['update_at'];}
 }
 ?>
 
@@ -52,15 +52,15 @@ if(!isset($_GET['id'])){
 
 	<title>基礎プログラミング演習 質問システム : 詳細</title>
 </head>
-<body>''
+<body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
 	<div class="detail-btns">
-		<a href="index.html" class="btn btn-blue btn-left">←前の画面に戻る</a>
+		<a href="index.php?u=<?php echo($user);?>" class="btn btn-blue btn-left">←前の画面に戻る</a>
 		<?php 
 		if($user == 'sa'||$user == 't'){
 			echo <<<EOF
-			<a href="answer.php?id=$id" class="btn btn-green btn-right">回答する</a>
+			<a href="answer.php?id=$id&u=$user" class="btn btn-green btn-right">回答する</a>
 			EOF;
 		}
 		?>
@@ -89,11 +89,11 @@ if(!isset($_GET['id'])){
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">メールアドレス</th>
-			<td colspan="2" class="q-detail"><?php if($user = 't' || $user == 'sa'){echo($q_mail);} else { echo("教員/SAにのみメールアドレスを表示しています");}?></td>
+			<td colspan="2" class="q-detail"><?php if($user == 't' || $user == 'sa'){echo($q_mail);} else { echo("教員/SAにのみメールアドレスを表示しています");}?></td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">質問詳細</th>
-			<td colspan="2" class="q-detail"><?php echo($q_content);?></td>
+			<td colspan="2" class="q-detail"><?php echo(nl2br($q_content));?></td>
 		</tr>
 		<tr>
 			<th colspan="2" class="q-detail">コード (html)</th>
@@ -119,7 +119,7 @@ if(!isset($_GET['id'])){
 
 	<table border="1" class="answer
 	<?php 
-	if($user='' && $state != 2){
+	if($user=="" && $state != 2|| $state == 0){
 		echo("display-none");
 	}
 	?>
@@ -136,7 +136,7 @@ if(!isset($_GET['id'])){
 		</tr>
 		<tr>
 			<th class="q-detail">回答</th>
-			<td class="q-detail"><?php echo($a_content);?></td>
+			<td class="q-detail"><?php echo(nl2br($a_content));?></td>
 		</tr>
 		<tr>
 			<th class="q-detail">コード (html)</th>
