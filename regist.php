@@ -11,7 +11,7 @@
 <body>
 	<h1>基礎プログラミング演習 質問システム</h1>
 	<hr>
-	<a href="index.html" class="btn btn-blue">←前の画面に戻る</a>
+	<a href="index.php" class="btn btn-blue">←前の画面に戻る</a>
 	<br>
 	<form method="POST" action="regist_c.php">
 		<h3>投稿者</h3>

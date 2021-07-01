@@ -32,7 +32,7 @@
 		</tr>
 		<tr>
 			<th>質問</th>
-			<td><?php if(isset($_POST['q_content'])){echo(htmlspecialchars($_POST['q_content']));}?></td>
+			<td><?php if(isset($_POST['q_content'])){echo(nl2br(htmlspecialchars($_POST['q_content'])));}?></td>
 		</tr>
 		<tr>
 			<th>コード(html)</th>
@@ -43,7 +43,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>コード(html)</th>
+			<th>コード(javascript)</th>
 			<td>
 <pre><code>
 <?php if(isset($_POST['q_code2'])){echo(htmlspecialchars($_POST['q_code2']));}?>

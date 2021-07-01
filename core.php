@@ -7,6 +7,10 @@ $db_file = "./".$file;
 date_default_timezone_set('Asia/Tokyo');
 
 $debug = $ini['debug'];
+if($debug == "1"){
+	ini_set("display_errors", 'On');
+	error_reporting(E_ALL);
+}
 
 /**
  * デバッグ
@@ -17,8 +21,6 @@ function debug(string $str){
 	global $debug;
 	if($debug == 1){
 		echo "<b>Debug</b>: $str<br>\n";
-		ini_set("display_errors", 'On');
-		error_reporting(E_ALL);
 	} else {
         echo "<script>console.log(\"$str\");</script>\n";
 
@@ -57,6 +59,7 @@ function db_query(string $query){
 
 	$db = db_connect();
 	$lines = $db->exec($query);
+	debug($query);
 	if($lines){
 		$lines = "Query success";
 	} else {
@@ -72,10 +75,12 @@ function db_query(string $query){
  */
 function db_query_fetch(string $query){
 	$db = db_connect();
-	$lines = $db->query($query);
-	if($lines){
+	$lines = array();
+	debug($query);
+	$res = $db->query($query);
+	if($res){
 		$i = 0;
-		while($row = $lines->fetchArray()){
+		while($row = $res->fetchArray()){
 			$lines[$i]=$row;
 			$i++;
 		}
