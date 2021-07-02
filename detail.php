@@ -59,9 +59,9 @@ if(!isset($_GET['id'])){
 		<a href="index.php?u=<?php echo($user);?>" class="btn btn-blue btn-left">←前の画面に戻る</a>
 		<?php 
 		if($user == 'sa'||$user == 't'){
-			echo <<<EOF
+echo <<<EOF
 			<a href="answer.php?id=$id&u=$user" class="btn btn-green btn-right">回答する</a>
-			EOF;
+EOF;
 		}
 		?>
 	</div>
@@ -75,11 +75,11 @@ if(!isset($_GET['id'])){
 		</tr>
 		<tr>
 			<?php
-			echo <<<EOF
+echo <<<EOT
 			<td class="q-no">$id</td>
 			<td class="">$q_name</td>
 			<td>$created_at</td>
-			EOF;
+EOT;
 			?>
 			<td class="q-state"><?php echo(getAnsState($state)); ?></td>
 		</tr>

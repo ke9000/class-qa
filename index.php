@@ -103,7 +103,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 		for($i=0; $i<count($lines); $i++){
 			$state_txt = getAnsState($lines[$i]['state']);
 			if($user=='' && ($lines[$i]['state']== 0 || $lines[$i]['state']== 2)){
-				echo <<<EOT
+echo <<<EOT
 				<tr>
 					<td class="q-no">
 						{$lines[$i]['id']}
@@ -118,9 +118,9 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 						<a href="detail.php?id={$lines[$i]['id']}&u=$user">詳細</a>
 					</td>
 				</tr>
-				EOT;
+EOT;
 			} elseif($user == 'sa'|| $user=='t') {
-				echo <<<EOT
+echo <<<EOT
 				<tr>
 					<td class="q-no">
 						{$lines[$i]['id']}
@@ -135,7 +135,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 						<a href="detail.php?id={$lines[$i]['id']}&u=$user">詳細</a>
 					</td>
 				</tr>
-				EOT;
+EOT;
 			}
 		}
 		?>
