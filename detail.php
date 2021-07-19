@@ -59,9 +59,9 @@ if(!isset($_GET['id'])){
 		<a href="index.php?u=<?php echo($user);?>" class="btn btn-blue btn-left">←前の画面に戻る</a>
 		<?php 
 		if($user == 'sa'||$user == 't'){
-echo <<<EOF
+echo <<<EOT
 			<a href="answer.php?id=$id&u=$user" class="btn btn-green btn-right">回答する</a>
-EOF;
+EOT;
 		}
 		?>
 	</div>

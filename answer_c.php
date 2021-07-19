@@ -74,11 +74,11 @@ if((!isset($_GET['u']))||($_GET['u'] == '')){
 		</tr>
 		<tr>
 			<?php
-echo <<<EOF
+echo <<<EOT
 			<td class="q-no">$id</td>
 			<td class="">$q_name</td>
 			<td>$created_at</td>
-EOF;
+EOT;
 			?>
 			<td class="q-state"><?php echo(getAnsState($state)); ?></td>
 		</tr>

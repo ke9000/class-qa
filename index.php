@@ -20,6 +20,31 @@ if(isset($_POST['q_regist']) && $_POST['q_regist']=="q_send_submit"){
 		if(!$state){
 			debug("q_regist_error/db_query_fetch_error");
 			debug($query);
+		} else {
+			$str = 
+			"新しい質問が投稿されました!\n\r
+			----- \n\r
+			質問者名: $q_name \n\r
+			質問タイトル: $q_title \n\r
+			質問者メアド: $q_mail \n\r
+			----- \n\r
+			質問内容: \n\r
+			$q_content \n\r
+			----- \n\r
+			HTMLソースコード: \n\r
+			$q_code1 \n\r
+			----- \n\r
+			JSソースコード: \n\r
+			$q_code2 \n\r
+			-------------- \n\r
+			-------------- \n\r
+			このメールは基礎プログラミング演習質問システムから自動送信されています。
+
+			作成:
+			1872039 佐々木健吾
+			";
+
+			sendMailNotifer($str);
 		}
 }
 /**
@@ -98,7 +123,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 			</th>
 		</tr>
 		<?php
-		$query = "SELECT * FROM qa ORDER BY id ASC";
+		$query = "SELECT * FROM qa ORDER BY id DESC";
 		$lines = db_query_fetch($query);
 		for($i=0; $i<count($lines); $i++){
 			$state_txt = getAnsState($lines[$i]['state']);
