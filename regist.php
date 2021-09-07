@@ -15,6 +15,7 @@
 	<br>
 	<form method="POST" action="regist_c.php">
 		<h3>投稿者</h3>
+		<p class="form-commnet">ニックネームでも構いません</p>
 		<input type="text" name="q_name" id="" placeholder="テスト太郎" value="<?php if(isset($_POST['q_name'])){echo($_POST['q_name']);}?>" required minlength="1">
 		<h3>質問タイトル</h3>
 		<input type="text" name="q_title" id="" placeholder="第N回 課題Mでエラーが表示されます" value="<?php if(isset($_POST['q_title'])){echo($_POST['q_title']);}?>" required>

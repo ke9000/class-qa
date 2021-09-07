@@ -20,6 +20,37 @@ if(isset($_POST['q_regist']) && $_POST['q_regist']=="q_send_submit"){
 		if(!$state){
 			debug("q_regist_error/db_query_fetch_error");
 			debug($query);
+		} else {
+
+$q_code1_decode = htmlspecialchars_decode($q_code1);
+$q_code2_decode = htmlspecialchars_decode($q_code2);
+
+$str = 
+"新しい質問が投稿されました!
+-----
+質問者名: $q_name
+質問タイトル: $q_title
+質問者メアド: $q_mail
+-----
+質問内容:
+$q_content \n
+-----
+HTMLソースコード:
+$q_code1_decode \n
+-----
+JSソースコード:
+$q_code2_decode \n
+--------------
+--------------
+このメールは基礎プログラミング演習質問システムから自動送信されています
+返信しても質問には回答出来ません。質問システムのサイトから回答してください。
+
+システム製作者:
+2021 東京都市大学 メディア情報学部 情報システム学科
+1872039 佐々木健吾
+";
+
+			sendMailNotifer($str);
 		}
 }
 /**
@@ -98,12 +129,12 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 			</th>
 		</tr>
 		<?php
-		$query = "SELECT * FROM qa ORDER BY id ASC";
+		$query = "SELECT * FROM qa ORDER BY id DESC";
 		$lines = db_query_fetch($query);
 		for($i=0; $i<count($lines); $i++){
 			$state_txt = getAnsState($lines[$i]['state']);
 			if($user=='' && ($lines[$i]['state']== 0 || $lines[$i]['state']== 2)){
-				echo <<<EOT
+echo <<<EOT
 				<tr>
 					<td class="q-no">
 						{$lines[$i]['id']}
@@ -118,9 +149,9 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 						<a href="detail.php?id={$lines[$i]['id']}&u=$user">詳細</a>
 					</td>
 				</tr>
-				EOT;
+EOT;
 			} elseif($user == 'sa'|| $user=='t') {
-				echo <<<EOT
+echo <<<EOT
 				<tr>
 					<td class="q-no">
 						{$lines[$i]['id']}
@@ -135,7 +166,7 @@ if(isset($_POST['a_regist']) && $_POST['a_regist']=="a_send_submit"){
 						<a href="detail.php?id={$lines[$i]['id']}&u=$user">詳細</a>
 					</td>
 				</tr>
-				EOT;
+EOT;
 			}
 		}
 		?>
